@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'Fullstack Demo',
   webDir: '../web/dist',
   server: {
-    url: 'http://10.0.2.2:5000',
+    url: 'http://192.168.10.36:5000',
     cleartext: true,
   },
 }

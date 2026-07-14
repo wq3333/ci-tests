@@ -2,7 +2,7 @@ import axios from 'axios'
 import type { User } from '../types/user'
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: 'http://192.168.10.36:5000/api',
 })
 
 export async function getUsers(): Promise<User[]> {
