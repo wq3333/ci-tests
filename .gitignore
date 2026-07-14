@@ -1,3 +1,24 @@
 bin
 obj
 .vs
+
+# Node.js
+node_modules/
+dist/
+
+# SQLite
+*.db
+*.db-shm
+*.db-wal
+
+# Uploads
+uploads/avatars/*
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
