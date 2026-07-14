@@ -13,6 +13,5 @@
     "noEmit": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "vite.config.ts"]
 }
