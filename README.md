@@ -1,0 +1,1 @@
+使用Photino.NET和capacitor来实现服务端，客户端全栈开发，并利用git actions自动打包
