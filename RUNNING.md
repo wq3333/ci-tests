@@ -196,13 +196,15 @@ curl -X POST http://localhost:5000/api/users/1/avatar \
 
 | Job | 平台 | 产物 |
 |-----|------|------|
-| Server | ubuntu | `server/` (ASP.NET Core 发布包) |
-| Desktop (win-x64) | windows | `desktop-win-x64/` (单文件 exe) |
-| Desktop (osx-x64) | macos | `desktop-osx-x64/` (macOS 应用) |
-| Desktop (linux-x64) | ubuntu | `desktop-linux-x64/` (Linux 可执行文件) |
+| Server (win-x64) | windows | `server-win-x64/` |
+| Server (osx-x64) | macos | `server-osx-x64/` |
+| Server (linux-x64) | ubuntu | `server-linux-x64/` |
+| Desktop (win-x64) | windows | `desktop-win-x64/` |
+| Desktop (osx-x64) | macos | `desktop-osx-x64/` |
+| Desktop (linux-x64) | ubuntu | `desktop-linux-x64/` |
 | Web | ubuntu | `web-dist/` (Vue 构建产物) |
 | Mobile (Android) | ubuntu | `mobile-android/*.apk` |
-| Mobile (iOS) | macos | `mobile-ios/*.app` (Simulator) |
+| Mobile (iOS) | macos | `mobile-ios/*.app` |
 
 产物自动上传为 GitHub Actions Artifact，可在 Workflow 运行页下载。
 
