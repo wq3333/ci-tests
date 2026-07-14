@@ -87,10 +87,11 @@ jobs:
           npm install
           npm run build
 
-      - name: Sync Capacitor
+      - name: Init & Sync Capacitor
         run: |
           cd src/clients/mobile
           npm install
+          npx cap add android
           npx cap sync
 
       - name: Build Android APK
@@ -120,10 +121,11 @@ jobs:
           npm install
           npm run build
 
-      - name: Sync Capacitor
+      - name: Init & Sync Capacitor
         run: |
           cd src/clients/mobile
           npm install
+          npx cap add ios
           npx cap sync
 
       - name: Build iOS app

@@ -72,8 +72,10 @@ dotnet run --project src/clients/desktop/Fullstack.Desktop -- http://192.168.1.1
 ```bash
 cd src/clients/mobile
 npm install
+npx cap add android       # 首次需要，生成 android/ 目录
+npx cap add ios           # 首次需要，生成 ios/ 目录
 npx cap sync
-npx cap open android    # 或 npx cap open ios
+npx cap open android      # 或 npx cap open ios
 ```
 
 > **注意：** Android 模拟器访问宿主机使用 `10.0.2.2`，iOS 模拟器可直接用 `localhost`。
@@ -183,6 +185,28 @@ curl -X POST http://localhost:5000/api/users/1/avatar \
               ↑                ↑                ↑
               └──── 共享 Vue 3 SPA 代码 ───────┘
 ```
+
+---
+
+---
+
+## CI/CD — GitHub Actions
+
+每次 `git push` 自动触发 `.github/workflows/ci.yml`，并行执行 7 个 Job：
+
+| Job | 平台 | 产物 |
+|-----|------|------|
+| Server | ubuntu | `server/` (ASP.NET Core 发布包) |
+| Desktop (win-x64) | windows | `desktop-win-x64/` (单文件 exe) |
+| Desktop (osx-x64) | macos | `desktop-osx-x64/` (macOS 应用) |
+| Desktop (linux-x64) | ubuntu | `desktop-linux-x64/` (Linux 可执行文件) |
+| Web | ubuntu | `web-dist/` (Vue 构建产物) |
+| Mobile (Android) | ubuntu | `mobile-android/*.apk` |
+| Mobile (iOS) | macos | `mobile-ios/*.app` (Simulator) |
+
+产物自动上传为 GitHub Actions Artifact，可在 Workflow 运行页下载。
+
+> CI 中自动执行 `npx cap add android/ios`，无需提前将 `android/` 和 `ios/` 目录提交到仓库。
 
 ---
 
