@@ -5,6 +5,7 @@ on: [push]
 jobs:
   server:
     name: Server (${{ matrix.rid }})
+    needs: [web]
     strategy:
       matrix:
         include:
@@ -21,6 +22,11 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-dist
+          path: src/server/Fullstack.Server/wwwroot
 
       - run: dotnet publish src/server/Fullstack.Server -c Release -o publish/server -r ${{ matrix.rid }} --self-contained true
 

@@ -62,7 +62,7 @@ public class UsersController : ControllerBase
 
         if (!string.IsNullOrEmpty(user.Avatar))
         {
-            var filePath = Path.Combine(_env.ContentRootPath, user.Avatar);
+            var filePath = Path.Combine(_env.ContentRootPath, user.Avatar.TrimStart('/'));
             if (System.IO.File.Exists(filePath))
                 System.IO.File.Delete(filePath);
         }
@@ -90,7 +90,7 @@ public class UsersController : ControllerBase
 
         if (!string.IsNullOrEmpty(user.Avatar))
         {
-            var oldPath = Path.Combine(_env.ContentRootPath, user.Avatar);
+            var oldPath = Path.Combine(_env.ContentRootPath, user.Avatar.TrimStart('/'));
             if (System.IO.File.Exists(oldPath))
                 System.IO.File.Delete(oldPath);
         }
@@ -100,10 +100,10 @@ public class UsersController : ControllerBase
             await file.CopyToAsync(stream);
         }
 
-        user.Avatar = relativePath.Replace("\\", "/");
+        user.Avatar = "/" + relativePath.Replace("\\", "/");
         await _db.SaveChangesAsync();
 
-        return Ok(new { avatarUrl = "/" + user.Avatar });
+        return Ok(new { avatarUrl = user.Avatar });
     }
 
     [HttpDelete("{id}/avatar")]
@@ -114,7 +114,7 @@ public class UsersController : ControllerBase
 
         if (!string.IsNullOrEmpty(user.Avatar))
         {
-            var filePath = Path.Combine(_env.ContentRootPath, user.Avatar);
+            var filePath = Path.Combine(_env.ContentRootPath, user.Avatar.TrimStart('/'));
             if (System.IO.File.Exists(filePath))
                 System.IO.File.Delete(filePath);
 

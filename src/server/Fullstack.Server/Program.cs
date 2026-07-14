@@ -22,6 +22,9 @@ var app = builder.Build();
 
 app.UseCors();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 var uploadsPath = Path.Combine(app.Environment.ContentRootPath, "uploads");
 Directory.CreateDirectory(uploadsPath);
 
@@ -32,6 +35,7 @@ app.UseStaticFiles(new StaticFileOptions
 });
 
 app.MapControllers();
+app.MapFallbackToFile("index.html");
 
 using (var scope = app.Services.CreateScope())
 {

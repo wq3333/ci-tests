@@ -97,12 +97,18 @@ npm run build
 ### 发布服务端
 
 ```bash
-# 先将前端构建产物复制到 wwwroot
-cp -r src/clients/web/dist src/server/Fullstack.Server/wwwroot
+# 1. 将前端构建产物复制到 wwwroot（服务端静态文件目录）
+mkdir -p src/server/Fullstack.Server/wwwroot
+cp -r src/clients/web/dist/* src/server/Fullstack.Server/wwwroot/
 
-# 发布服务端
-dotnet publish src/server/Fullstack.Server -c Release -o publish/server
+# 2. 发布服务端（单文件，跨平台）
+dotnet publish src/server/Fullstack.Server -c Release -o publish/server -r win-x64 --self-contained true
+# 或 linux-x64 / osx-x64
 ```
+
+> 服务端启动后可通过 `http://localhost:5000/` 直接访问 SPA，
+> API 路径 `http://localhost:5000/api/users`，头像路径 `http://localhost:5000/uploads/avatars/`。
+> 无需额外代理配置。
 
 ### 发布桌面端
 
